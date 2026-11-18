@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lexicon of Modern Money Habits — Coining Words to Name What We Do With Money</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Cardo:ital,wght@0,400;0,700;1,400&amp;family=Courier+Prime:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --parchment:#f4ede1;--parchment-deep:#ece1d0;--ink:#2e2823;--ink-soft:#4a4039;--ink-faint:#7a6e62;
+    --rule:#d8c9b2;--card:#fbf6ec;--terracotta:#bd5734;--terracotta-deep:#9c4527;
+    --slate:#5d6f78;--amber:#c8923c;--olive:#6e7f4e;--shadow:rgba(46,40,35,0.12);
+  }
+  html[data-theme="dark"]{
+    --parchment:#1c1916;--parchment-deep:#15120f;--ink:#ece1d0;--ink-soft:#cdbfa9;--ink-faint:#9c8d79;
+    --rule:#3a322a;--card:#241f1a;--terracotta:#dd7048;--terracotta-deep:#c2582e;
+    --slate:#7e909a;--amber:#d6a44f;--olive:#8fa067;--shadow:rgba(0,0,0,0.4);
+  }
+  body{font-family:'Cardo',Georgia,serif;background:var(--parchment);color:var(--ink);line-height:1.75;font-size:1.12rem;transition:background .4s ease,color .4s ease;overflow-x:hidden;}
+  .wrap{max-width:880px;margin:0 auto;padding:2rem 1.5rem 4rem;}
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;}
+  h1{font-size:clamp(2.6rem,7vw,4.2rem);font-weight:700;line-height:1.04;letter-spacing:-.5px;}
+  h2{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:600;margin-bottom:.6rem;line-height:1.12;}
+  h3{font-size:1.5rem;font-weight:600;}
+  .eyebrow{font-family:'Courier Prime',monospace;text-transform:uppercase;letter-spacing:.32em;font-size:.72rem;color:var(--terracotta);font-weight:700;display:block;margin-bottom:1rem;}
+  .toggle{position:fixed;top:1.1rem;right:1.1rem;z-index:50;background:var(--card);color:var(--ink);border:1px solid var(--rule);border-radius:999px;padding:.5rem .9rem;cursor:pointer;font-family:'Courier Prime',monospace;font-size:.72rem;letter-spacing:.1em;box-shadow:0 4px 14px var(--shadow);transition:transform .2s ease;}
+  .toggle:hover{transform:translateY(-2px);}
+  .hero{padding:4rem 0 2.5rem;border-bottom:1px solid var(--rule);}
+  .hero p.lede{font-size:1.3rem;color:var(--ink-soft);margin-top:1.4rem;max-width:48ch;}
+  .source-note{margin-top:1.6rem;font-family:'Courier Prime',monospace;font-size:.74rem;color:var(--ink-faint);letter-spacing:.04em;line-height:1.7;}
+  section{padding:3rem 0;border-bottom:1px solid var(--rule);}
+  p+p{margin-top:1.1rem;}
+  .lead-in{color:var(--ink-soft);max-width:62ch;}
+  .thesis{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,3.4vw,1.9rem);font-weight:500;font-style:italic;line-height:1.4;border-left:3px solid var(--terracotta);padding:.4rem 0 .4rem 1.4rem;margin:1.4rem 0 .4rem;}
+
+  /* method cards */
+  .methods{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1.6rem;}
+  .method{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:1.1rem 1.2rem;box-shadow:0 4px 14px var(--shadow);}
+  .method .mk{font-family:'Courier Prime',monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terracotta);font-weight:700;}
+  .method h3{font-size:1.25rem;margin:.2rem 0 .3rem;}
+  .method p{font-size:.98rem;color:var(--ink-soft);}
+  .formula{font-family:'Courier Prime',monospace;font-size:.82rem;color:var(--ink);background:var(--parchment-deep);border-radius:6px;padding:.15rem .45rem;display:inline-block;margin-top:.4rem;}
+
+  /* word cards */
+  .filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem;}
+  .chip{background:transparent;border:1px solid var(--rule);color:var(--ink-soft);border-radius:999px;padding:.35rem .85rem;font-family:'Courier Prime',monospace;font-size:.7rem;letter-spacing:.08em;cursor:pointer;}
+  .chip.on{background:var(--terracotta);border-color:var(--terracotta);color:#fff;}
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem;margin-top:1.4rem;}
+  .wcard{background:var(--card);border:1px solid var(--rule);border-radius:16px;overflow:hidden;box-shadow:0 6px 20px var(--shadow);display:flex;flex-direction:column;}
+  .wcard[hidden]{display:none;}
+  .whead{padding:1rem 1.2rem .8rem;border-bottom:1px solid var(--rule);}
+  .wnum{font-family:'Courier Prime',monospace;font-size:.64rem;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase;}
+  .wname{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:700;line-height:1.05;color:var(--terracotta);margin-top:.15rem;}
+  .wpos{font-family:'Courier Prime',monospace;font-size:.7rem;color:var(--ink-faint);margin-top:.25rem;}
+  .new-badge{display:inline-block;background:var(--olive);color:#fff;font-family:'Courier Prime',monospace;font-size:.58rem;letter-spacing:.12em;padding:.1rem .45rem;border-radius:4px;margin-left:.4rem;vertical-align:middle;}
+  .wbody{padding:.9rem 1.2rem 1.1rem;flex:1;}
+  .wroots{font-family:'Courier Prime',monospace;font-size:.74rem;color:var(--ink-soft);margin-bottom:.5rem;}
+  .wdef{font-size:1rem;}
+  .wex{font-style:italic;color:var(--ink-soft);font-size:.96rem;margin-top:.6rem;border-left:2px solid var(--amber);padding-left:.7rem;}
+  .wfam{font-family:'Courier Prime',monospace;font-size:.7rem;color:var(--olive);margin-top:.6rem;}
+
+  /* swing figure */
+  .fig{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:1.4rem;margin-top:1.6rem;box-shadow:0 6px 20px var(--shadow);}
+  .fig svg{width:100%;height:auto;display:block;}
+  .fig figcaption{font-family:'Courier Prime',monospace;font-size:.7rem;color:var(--ink-faint);text-align:center;margin-top:.8rem;line-height:1.6;}
+
+  /* tables */
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:1.4rem;border:1px solid var(--rule);border-radius:12px;background:var(--card);}
+  .map-table{width:100%;min-width:620px;border-collapse:collapse;font-size:.96rem;}
+  .map-table th,.map-table td{text-align:left;padding:.75rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top;}
+  .map-table th{font-family:'Courier Prime',monospace;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);}
+  .map-table tr:last-child td{border-bottom:none;}
+  .st{font-family:'Courier Prime',monospace;font-size:.66rem;letter-spacing:.06em;white-space:nowrap;font-weight:700;}
+  .st.ok{color:var(--olive);} .st.part{color:var(--amber);} .st.no{color:var(--terracotta);}
+
+  /* callouts */
+  .callout{margin-top:1.6rem;background:var(--card);border:1px solid var(--rule);border-radius:0 12px 12px 0;padding:1.3rem 1.5rem;}
+  .callout p{font-size:1.02rem;color:var(--ink-soft);}
+  .callout .tag{font-family:'Courier Prime',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terracotta);display:block;margin-bottom:.3rem;}
+  .callout--warn{border-left:4px solid var(--terracotta);}
+  .callout--solved{border-left:4px solid var(--olive);}
+  .callout--solved .tag{color:var(--olive);}
+
+  /* blend builder */
+  .builder{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:1.4rem;margin-top:1.4rem;box-shadow:0 6px 20px var(--shadow);}
+  .brow{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;}
+  .brow input{flex:1;min-width:140px;background:var(--parchment);color:var(--ink);border:1px solid var(--rule);border-radius:10px;padding:.6rem .8rem;font-family:'Cardo',serif;font-size:1.05rem;}
+  .plus{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--terracotta);}
+  .btn{background:var(--terracotta);color:#fff;border:none;border-radius:999px;padding:.55rem 1.1rem;cursor:pointer;font-family:'Courier Prime',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;}
+  .btn:hover{background:var(--terracotta-deep);}
+  .blends{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;min-height:2rem;}
+  .blend{background:var(--parchment-deep);border-radius:8px;padding:.3rem .7rem;font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;}
+  .blend small{font-family:'Courier Prime',monospace;font-size:.6rem;color:var(--ink-faint);margin-left:.3rem;}
+  .hint{font-family:'Courier Prime',monospace;font-size:.7rem;color:var(--ink-faint);margin-top:.8rem;line-height:1.6;}
+
+  /* scenario quiz */
+  .quiz{margin-top:1.4rem;display:grid;gap:1rem;}
+  .qcard{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:1.2rem 1.3rem;}
+  .qcard .scn{font-size:1.02rem;}
+  .opts{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem;}
+  .opt{background:transparent;border:1px solid var(--rule);color:var(--ink);border-radius:999px;padding:.35rem .9rem;font-family:'Cardo',serif;font-size:.98rem;cursor:pointer;}
+  .opt.right{background:var(--olive);border-color:var(--olive);color:#fff;}
+  .opt.wrong{border-color:var(--terracotta);color:var(--terracotta);text-decoration:line-through;}
+  .fb{font-size:.95rem;color:var(--ink-soft);margin-top:.6rem;min-height:1.2rem;}
+  .score{font-family:'Courier Prime',monospace;font-size:.8rem;color:var(--terracotta);margin-top:1rem;}
+
+  /* recall */
+  .recall{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:1.6rem;margin-top:1.4rem;}
+  .recall-q{padding:1rem 0;border-bottom:1px dashed var(--rule);}
+  .recall-q:last-child{border-bottom:none;padding-bottom:0;}
+  .recall-q .q{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;}
+  .reveal-btn{margin-top:.6rem;background:transparent;color:var(--terracotta);border:1px solid var(--terracotta);border-radius:999px;padding:.32rem .9rem;cursor:pointer;font-family:'Courier Prime',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;transition:all .2s ease;}
+  .reveal-btn:hover{background:var(--terracotta);color:#fff;}
+  .answer{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--ink-soft);}
+  .answer p{margin-top:.8rem;font-size:1rem;}
+
+  /* footer */
+  footer{margin-top:3rem;background:var(--ink);color:var(--parchment);border-radius:18px;padding:2.2rem 2rem;text-align:center;}
+  html[data-theme="dark"] footer{background:#0e0c0a;}
+  footer .ftitle{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;}
+  footer .fmeta{font-family:'Courier Prime',monospace;font-size:.72rem;letter-spacing:.05em;color:#cdbfa9;margin-top:.5rem;}
+  .timestamp{color:var(--terracotta);}
+  .creation-context{background:rgba(255,255,255,0.06);border-radius:12px;padding:1.1rem 1.3rem;margin-top:1.4rem;text-align:left;font-size:.7rem;line-height:1.7;color:#bdae99;font-family:'Courier Prime',monospace;}
+  .creation-context strong{color:var(--parchment);}
+
+  .reveal-on-scroll{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal-on-scroll.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;}.reveal-on-scroll{opacity:1;transform:none;}}
+  @media(max-width:640px){.cards,.methods{grid-template-columns:1fr;}body{font-size:1.06rem;}}
+</style>
+</head>
+<body>
+
+<button class="toggle" id="themeToggle" aria-label="Toggle light and dark theme">◐ theme</button>
+
+<div class="wrap">
+
+  <header class="hero">
+    <span class="eyebrow">A Word-Making Study · Money &amp; Behaviour</span>
+    <h1>Lexicon of<br>Modern Money Habits</h1>
+    <p class="lede">Some money behaviours are so common that everyone recognises them, yet no single word names them. This page collects words invented to fill those gaps, shows the four techniques used to build them, and gives you a small workshop to coin your own.</p>
+    <p class="source-note">
+      Source: the running repository "Lexicon of Modern Money Habits: Complete Archive" (Entries 001–005 plus prototypes).<br>
+      Entries 006–009 are new additions coined for this page. The real-world terms in the Real Terms section are checked against sources, and the check is shown.
+    </p>
+  </header>
+
+  <!-- WHY -->
+  <section class="reveal-on-scroll">
+    <span class="eyebrow">Why Invent Words At All</span>
+    <h2>A name turns a vague feeling into a thing you can notice</h2>
+    <p class="lead-in">Before you have a word for a pattern, you can only describe it in a long sentence: "that thing where I save ₹50 on a coupon and then spend ₹2,000 because I feel I've earned it." Once the pattern has a name (<em>thrift-splurge</em>), you can spot it the moment it starts, mention it to someone in one breath, and keep track of how often it happens.</p>
+    <div class="thesis">A good coinage works like a handle: it gives your attention something to grip.</div>
+    <p>This is why psychology keeps naming things, such as "anchoring" or "loss aversion". The words below do the same job for everyday habits, but they are made for your own use rather than for academic papers.</p>
+  </section>
+
+  <!-- METHODS -->
+  <section class="reveal-on-scroll">
+    <span class="eyebrow">The Toolkit</span>
+    <h2>Four ways the words in this lexicon were built</h2>
+    <p class="lead-in">Every entry below uses one of these four techniques. Learn to recognise them and you can take apart any new word you meet, or put together one of your own.</p>
+    <div class="methods">
+      <div class="method"><span class="mk">Method 1 · Blend</span><h3>Portmanteau</h3><p>Take the front of one word and the back of another, ideally joining at a shared sound so the seam disappears.</p><span class="formula">spend + pendulum → spendulum</span></div>
+      <div class="method"><span class="mk">Method 2 · Hyphen</span><h3>Compound</h3><p>Keep both words whole and join them with a hyphen. It is less clever than a blend, but instantly readable.</p><span class="formula">cart + amnesia → cart-amnesia</span></div>
+      <div class="method"><span class="mk">Method 3 · Eponym</span><h3>Borrowed name</h3><p>Use a figure from myth or history as shorthand for a quality. The name brings its own story along.</p><span class="formula">Plutus (god of wealth) + flip</span></div>
+      <div class="method"><span class="mk">Method 4 · Affix family</span><h3>Derivation</h3><p>Once a root word exists, add standard English endings to grow a family of nouns and adjectives from it.</p><span class="formula">spendulum → spendulous → spendulistic</span></div>
+    </div>
+    <div class="callout callout--solved">
+      <span class="tag">The test of a good coinage</span>
+      <p><strong>Guessable</strong> (a stranger can work out roughly what it means), <strong>sayable</strong> (it doesn't trip the tongue), and <strong>specific</strong> (it names one pattern, not a whole mood). <em>Spendulum</em> passes all three, which is why it grew into a whole family.</p>
+    </div>
+  </section>
+
+  <!-- SWING -->
+  <section class="reveal-on-scroll">
+    <span class="eyebrow">The Founding Word</span>
+    <h2>The spendulum swing</h2>
+    <p class="lead-in">The lexicon began with a single question: what do you call someone who swings from overspending to extreme penny-pinching? Four candidate words were tried, and <em>spendulum</em> won because the image of a pendulum explains itself.</p>
+    <figure class="fig">
+      <svg viewBox="0 0 680 278" role="img" aria-label="A pendulum swinging between two extremes: Prodigal on the left and Parsimony on the right, with the snap point marked at the top of the swing.">
+        <line x1="340" y1="20" x2="340" y2="40" stroke="var(--ink-faint)" stroke-width="2"/>
+        <circle cx="340" cy="20" r="5" fill="var(--ink)"/>
+        <path d="M150 200 Q340 300 530 200" fill="none" stroke="var(--rule)" stroke-width="2" stroke-dasharray="6 6"/>
+        <line x1="340" y1="20" x2="150" y2="200" stroke="var(--amber)" stroke-width="2" opacity=".55"/>
+        <line x1="340" y1="20" x2="530" y2="200" stroke="var(--slate)" stroke-width="2" opacity=".55"/>
+        <circle cx="150" cy="200" r="22" fill="var(--amber)"/>
+        <circle cx="530" cy="200" r="22" fill="var(--slate)"/>
+        <text x="150" y="246" text-anchor="middle" font-family="&#39;Cormorant Garamond&#39;,serif" font-size="22" font-weight="700" fill="var(--amber)">PRODIGAL</text>
+        <text x="150" y="160" text-anchor="middle" font-family="&#39;Courier Prime&#39;,monospace" font-size="11" fill="var(--ink-faint)">payday-phoria · thrift-splurge</text>
+        <text x="530" y="246" text-anchor="middle" font-family="&#39;Cormorant Garamond&#39;,serif" font-size="22" font-weight="700" fill="var(--slate)">PARSIMONY</text>
+        <text x="530" y="160" text-anchor="middle" font-family="&#39;Courier Prime&#39;,monospace" font-size="11" fill="var(--ink-faint)">rebound frugality</text>
+        <text x="340" y="268" text-anchor="middle" font-family="&#39;Courier Prime&#39;,monospace" font-size="11" fill="var(--terracotta)">▲ the snap point between them = LUXUSNAP</text>
+        <text x="340" y="110" text-anchor="middle" font-family="&#39;Cormorant Garamond&#39;,serif" font-size="20" font-style="italic" fill="var(--ink)">the whole cycle = spendulum</text>
+      </svg>
+      <figcaption>Several words in the lexicon name different parts of one cycle: the person, the swing, and the moment it snaps.</figcaption>
+    </figure>
+  </section>
+
+  <!-- WORDS -->
+  <section class="reveal-on-scroll">
+    <span class="eyebrow">The Lexicon</span>
+    <h2>All the words, as cards</h2>
+    <p class="lead-in">Use the filters to study one group at a time. Before you read each card, try to guess the meaning from the name alone. That guess is the "guessable" test happening in your own head.</p>
+    <div class="filters" id="filters">
+      <button class="chip on" data-f="all">All 14</button>
+      <button class="chip" data-f="proto">Prototypes</button>
+      <button class="chip" data-f="family">Spendulum family</button>
+      <button class="chip" data-f="core">Entries 002–005</button>
+      <button class="chip" data-f="new">New · 006–009</button>
+    </div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <!-- REAL WORLD -->
+  <section class="reveal-on-scroll">
+    <span class="eyebrow">Real Terms &amp; Global Idioms</span>
+    <h2>What already exists, checked against sources</h2>
+    <p class="lead-in">The archive also gathered real terms and sayings from other languages. Invented words are clearly invented; real ones should be verifiably real. Here is the honest status of each.</p>
+
+    <div class="table-scroll">
+      <table class="map-table">
+        <thead><tr><th>Term</th><th>Language</th><th>Meaning given</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Parsimony</strong></td><td>English</td><td>Extreme care in spending, often stinginess. In science, the "law of parsimony" (Occam's razor) means preferring the simplest explanation.</td><td><span class="st ok">● Confirmed</span></td></tr>
+          <tr><td><strong>Enantiodromia</strong></td><td>Greek / Jung</td><td>When any trait is pushed to an extreme, it tends to flip into its opposite.</td><td><span class="st part">◐ Mostly right</span></td></tr>
+          <tr><td><strong>Umschwung</strong></td><td>German</td><td>A sudden turnaround or reversal in behaviour, mood, or fortune.</td><td><span class="st ok">● Confirmed</span></td></tr>
+          <tr><td><strong>Ashrafi lutayein aur koylon par mohar</strong></td><td>Hindi / Urdu</td><td>"Gold coins thrown away, yet a seal stamped on the coal." Wasting wealth while guarding trifles.</td><td><span class="st ok">● Confirmed</span></td></tr>
+          <tr><td><strong>Despilfarrar en grande y ahorrar en chico</strong></td><td>Spanish</td><td>"Splurge big, save small."</td><td><span class="st part">◐ Phrase, not a recorded proverb</span></td></tr>
+          <tr><td><strong>Gros mangeur devenu pince-maille</strong></td><td>French</td><td>"A big spender turned penny-pincher."</td><td><span class="st part">◐ Mistranslated</span></td></tr>
+          <tr><td><strong>Tornak</strong></td><td>Turkish</td><td>"To go back on one's habits", becoming tight-fisted.</td><td><span class="st no">✕ Not found</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout--warn">
+      <span class="tag">Corrections to the archive</span>
+      <p><strong>Tornak:</strong> I could not find this word in Turkish with this meaning. The close-sounding real word <em>tırnak</em> means fingernail or claw. Treat "tornak" as unverified until a Turkish speaker confirms it.</p>
+      <p><strong>French phrase:</strong> <em>pince-maille</em> is a real word for a miser, but <em>gros mangeur</em> means "big eater", not "big spender". The phrase reads as a literal word-for-word translation rather than an actual French idiom.</p>
+      <p><strong>Enantiodromia:</strong> the idea traces back to Heraclitus, and Jung made it a named principle in analytical psychology (his clearest definition is in <em>Psychological Types</em>, 1921). The archive's claim that Heraclitus himself "coined" the word, and the 1912 date, are not well supported.</p>
+    </div>
+
+    <div class="callout callout--solved">
+      <span class="tag">An interesting discovery</span>
+      <p>The Hindi/Urdu proverb is recorded as the equivalent of <em>"penny wise and pound foolish"</em>. That describes doing <strong>both at the same time</strong>, not swinging from one to the other. So the proverb is actually an older name for <strong>faux-gal</strong> (Entry 003), not for spendulum. Your coinage had a centuries-old relative you hadn't connected it to.</p>
+    </div>
+  </section>
+
+  <!-- WORKSHOP -->
+  <section class="reveal-on-scroll">
+    <span class="eyebrow">Word Workshop</span>
+    <h2>Coin your own blend</h2>
+    <p class="lead-in">Type two words and the workshop will try to join them at the places where they share a letter, the way <em>spend</em> and <em>pendulum</em> share "pen". Most results will be clumsy. The goal is to find the one that passes the three tests: guessable, sayable, specific.</p>
+    <div class="builder">
+      <div class="brow">
+        <input id="wa" value="shagun" aria-label="First word">
+        <span class="plus">+</span>
+        <input id="wb" value="inflation" aria-label="Second word">
+        <button class="btn" id="blendBtn">Blend</button>
+      </div>
+      <div class="blends" id="blends"></div>
+      <p class="hint">Try: harvest + vest · loan + alone · budget + fidget · rupee + repeat · thrift + drift</p>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="reveal-on-scroll">
+    <span class="eyebrow">Apply It</span>
+    <h2>Which word fits the scene?</h2>
+    <p class="lead-in">Real understanding means you can pick the right word for a situation you haven't seen before. Each scene below has one best fit.</p>
+    <div class="quiz" id="quiz"></div>
+    <div class="score" id="score"></div>
+  </section>
+
+  <!-- RECALL -->
+  <section class="reveal-on-scroll">
+    <span class="eyebrow">Active Recall</span>
+    <h2>Five checks before you close the tab</h2>
+    <p class="lead-in">Answer each one in your head first, then reveal. The aim is to rebuild the idea from memory, not just recognise it.</p>
+    <div class="recall">
+      <div class="recall-q"><div class="q">1 · Name the four techniques used to coin words in this lexicon.</div><button class="reveal-btn">Reveal</button><div class="answer"><p><strong>Blend</strong> (spendulum), <strong>hyphenated compound</strong> (cart-amnesia), <strong>eponym</strong> (Plutus-flip), and <strong>affix family</strong> (spendulous, spendulistic).</p></div></div>
+      <div class="recall-q"><div class="q">2 · What is the difference between "spendulous" and "spendulistic"?</div><button class="reveal-btn">Reveal</button><div class="answer"><p><em>Spendulous</em> describes the swing itself, a single abrupt move from overspending to parsimony. <em>Spendulistic</em> describes a <strong>recurring</strong> cycle: five-star dinners in week one, plain lentils in week four.</p></div></div>
+      <div class="recall-q"><div class="q">3 · Which existing proverb turned out to match faux-gal better than spendulum, and why?</div><button class="reveal-btn">Reveal</button><div class="answer"><p><em>Ashrafi lutayein aur koylon par mohar</em>, meaning "penny wise and pound foolish". It describes doing both at once, which is the faux-gal pattern, rather than a swing from one extreme to the other.</p></div></div>
+      <div class="recall-q"><div class="q">4 · What are the three tests of a good coinage?</div><button class="reveal-btn">Reveal</button><div class="answer"><p><strong>Guessable</strong>, <strong>sayable</strong>, <strong>specific</strong>. A word that fails "specific" ends up naming a mood instead of a pattern you can catch yourself doing.</p></div></div>
+      <div class="recall-q"><div class="q">5 · How is mandi-mirage related to payday-phoria?</div><button class="reveal-btn">Reveal</button><div class="answer"><p>Both describe a false sense of wealth when cash arrives. <em>Payday-phoria</em> is the salaried version, which vanishes once rent clears. <em>Mandi-mirage</em> is the seasonal farm version, which vanishes once input loans, dues and next season's seed are subtracted. Same illusion, different cash cycle.</p></div></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="ftitle">Lexicon of Modern Money Habits</div>
+    <div class="fmeta">Created 18 November 2026 · Vipul Anand's Knowledge Library</div>
+    <div class="fmeta">Live timestamp: <span class="timestamp" id="ts">loading…</span></div>
+    <div class="creation-context">
+      <strong>Why this page exists.</strong> Built to turn the running "Lexicon of Modern Money Habits" archive into a study page that can be revisited: the coined words as filterable cards, the four word-building techniques laid out plainly, a blend workshop for coining new terms, and recall checks for retention. Four new entries (006–009) were added to cover saving and investing, social spending, digital subscriptions, and farm money.
+      <br><br>
+      <strong>What Vipul was thinking about.</strong> Inventing terms and words to make expression easier: how naming a vague money behaviour turns it into something you can notice, talk about, and track. The thread started with one question, what to call an overspender who flips into extreme parsimony, and grew into a personal vocabulary for the patterns between spending, saving, and self-image.
+      <br><br>
+      <strong>Method &amp; honesty.</strong> All coined words are original inventions and labelled as such. Real-world terms were checked against sources; one (Tornak) could not be confirmed and one French phrase was flagged as a literal translation. Repository: anandvip/money-lexicon.
+    </div>
+  </footer>
+</div>
+
+<script>
+  // ---- data ----
+  var WORDS=[
+    {g:'proto',n:'P1',w:'Prodiparsimony',p:'Noun · adj. prodiparsimonious',r:'prodigal + parsimony',d:'The condition of swinging from lavish overspending straight into penny-pinching.',e:'After blowing his bonus in a single weekend, Mark entered a state of pure prodiparsimony.'},
+    {g:'proto',n:'P2',w:'Luxusnap',p:'Noun / Verb',r:'luxury + snap',d:'The exact moment a big spender abruptly snaps out of a lavish lifestyle and locks down the wallet.',e:'Seeing his credit card bill triggered a sudden luxusnap, turning him parsimonious overnight.'},
+    {g:'proto',n:'P3',w:'Plutus-Flip',p:'Noun',r:'Plutus (Greek god of wealth) + flip',d:'A dramatic psychological U-turn from acting like a billionaire to counting every coin.',e:'From buying rounds for the whole bar to reusing tea bags: a classic Plutus-flip.'},
+    {g:'family',n:'001',w:'Spendulum',p:'Noun · /ˈspɛn.djʊ.ləm/',r:'spend + pendulum',d:'A person whose financial habits swing violently from reckless luxury to strict parsimony, or the swinging cycle itself.',e:'Ever since he went broke, my friend has become a total spendulum, refusing to even split a ₹100 auto fare.',f:'Founding word of the family'},
+    {g:'family',n:'001a',w:'Spendulous',p:'Adjective · /ˈspɛn.djʊ.ləs/',r:'spendulum + -ous',d:'Characterised by an abrupt swing from reckless overspending to extreme parsimony.',e:'Once a carefree big spender when funds were plenty, he became entirely spendulous in the end.',f:'A single swing'},
+    {g:'family',n:'001b',w:'Spendulistic',p:'Adjective · /ˌspɛn.djʊˈlɪs.tɪk/',r:'spendulum + -istic',d:'Tending toward recurring cycles of lavish splurging followed by severe frugality.',e:'Their budget follows a spendulistic pattern: five-star dinners in week one, plain lentils in week four.',f:'A repeating cycle'},
+    {g:'core',n:'002',w:'Thrift-Splurge',p:'Verb / Noun',r:'thrift + splurge',d:'Saving a tiny amount on a discount, then using that saving as an excuse to buy an expensive luxury.',e:'She saved ₹50 with a grocery coupon and promptly thrift-splurged on a ₹5,000 jacket.'},
+    {g:'core',n:'003',w:'Faux-gal',p:'Adjective',r:'faux (fake) + frugal',d:'Strict penny-pinching on tiny daily costs while quietly spending fortunes on big indulgences.',e:'He is completely faux-gal, refusing extra guacamole right after booking a first-class flight.',f:'Older relative: "ashrafi lutayein aur koylon par mohar"'},
+    {g:'core',n:'004',w:'Cart-Amnesia',p:'Noun',r:'shopping cart + amnesia',d:'The memory loss between clicking "add to cart" all week and seeing the shocking total at checkout.',e:'Late-night browsing gave her severe cart-amnesia until the delivery boxes piled up at her door.'},
+    {g:'core',n:'005',w:'Payday-Phoria',p:'Noun',r:'payday + euphoria',d:'A brief surge of imaginary wealth right after getting paid that vanishes once rent and bills clear.',e:'In the grip of payday-phoria, he bought dinner for the whole table on Friday and ate plain rice by Tuesday.'},
+    {g:'new',n:'006',w:'Tipfolio',p:'Noun · Saving &amp; investing',r:'tip + portfolio',d:'A set of investments assembled from forwarded tips, group-chat buzz and "my cousin says" calls, rather than from any plan of your own.',e:'He calls it diversification, but it is really a tipfolio: twelve stocks, twelve different WhatsApp groups.'},
+    {g:'new',n:'007',w:'Shagun-flation',p:'Noun · Social spending',r:'shagun (gift-envelope money) + inflation',d:'The steady rise in what you feel obliged to give at weddings and functions, because the last envelope you received quietly sets the new minimum.',e:'They gave ₹1,100 at our wedding, so shagun-flation says we cannot possibly give less than ₹2,100 at theirs.'},
+    {g:'new',n:'008',w:'Subscriptomb',p:'Noun · Digital habits',r:'subscription + tomb',d:'The graveyard of forgotten subscriptions and auto-debits that are still quietly charging long after you stopped using them.',e:'Going through her bank statement, she found a subscriptomb of four streaming apps and a fitness app from 2024.'},
+    {g:'new',n:'009',w:'Mandi-Mirage',p:'Noun · Farm &amp; business money',r:'mandi (market yard) + mirage',d:'Harvest-sale cash that looks like profit until input loans, commission-agent dues and next season\'s seed and fertiliser are subtracted.',e:'The cheque looked enormous, but it was a mandi-mirage: by the time the arhtiya was settled, half of it was gone.',f:'Seasonal cousin of payday-phoria'}
+  ];
+
+  var cardsEl=document.getElementById('cards');
+  WORDS.forEach(function(x){
+    var c=document.createElement('article');
+    c.className='wcard'; c.dataset.g=x.g;
+    c.innerHTML='<div class="whead"><div class="wnum">Entry '+x.n+(x.g==='new'?'<span class="new-badge">NEW</span>':'')+'</div>'+
+      '<div class="wname">'+x.w+'</div><div class="wpos">'+x.p+'</div></div>'+
+      '<div class="wbody"><div class="wroots">Roots: '+x.r+'</div><div class="wdef">'+x.d+'</div>'+
+      '<div class="wex">"'+x.e+'"</div>'+(x.f?'<div class="wfam">↳ '+x.f+'</div>':'')+'</div>';
+    cardsEl.appendChild(c);
+  });
+  document.querySelectorAll('.chip').forEach(function(ch){
+    ch.addEventListener('click',function(){
+      document.querySelectorAll('.chip').forEach(function(o){o.classList.remove('on');});
+      ch.classList.add('on');
+      var f=ch.dataset.f;
+      document.querySelectorAll('.wcard').forEach(function(c){c.hidden=!(f==='all'||c.dataset.g===f);});
+    });
+  });
+
+  // ---- blend builder ----
+  function blend(a,b){
+    a=a.trim().toLowerCase(); b=b.trim().toLowerCase();
+    var out={}, list=[];
+    if(a.length<2||b.length<2) return list;
+    for(var i=2;i<=a.length;i++){
+      var head=a.slice(0,i), last=head[head.length-1];
+      for(var k=0;k<b.length-1;k++){
+        if(b[k]===last){
+          var w=head+b.slice(k+1);
+          if(w!==a&&w!==b&&w.length>=4&&!out[w]){out[w]=1;list.push({w:w,seam:last});}
+        }
+      }
+    }
+    // overlap-free joins as fallback
+    var simple=[a+b.slice(Math.floor(b.length/2)), a.slice(0,Math.ceil(a.length/2))+b];
+    simple.forEach(function(w){if(!out[w]){out[w]=1;list.push({w:w,seam:null});}});
+    // prefer seams near the end of A and start of B, then shorter words
+    list.sort(function(x,y){return (x.seam?0:1)-(y.seam?0:1)||Math.abs(x.w.length-8)-Math.abs(y.w.length-8);});
+    return list.slice(0,8);
+  }
+  function renderBlends(){
+    var res=blend(document.getElementById('wa').value,document.getElementById('wb').value);
+    var el=document.getElementById('blends'); el.innerHTML='';
+    if(!res.length){el.innerHTML='<span class="hint">Enter two words of at least two letters each.</span>';return;}
+    res.forEach(function(r){
+      var s=document.createElement('span'); s.className='blend';
+      s.textContent=r.w.charAt(0).toUpperCase()+r.w.slice(1);var sm=document.createElement('small');sm.textContent=(r.seam?'joins at “'+r.seam+'”':'straight join');s.appendChild(sm);
+      el.appendChild(s);
+    });
+  }
+  document.getElementById('blendBtn').addEventListener('click',renderBlends);
+  ['wa','wb'].forEach(function(id){document.getElementById(id).addEventListener('keydown',function(e){if(e.key==='Enter')renderBlends();});});
+  renderBlends();
+
+  // ---- scenario quiz ----
+  var QUIZ=[
+    {s:'Riya refuses to pay ₹20 for a carry bag at the supermarket, then books a ₹40,000 weekend resort on the drive home.',o:['Faux-gal','Spendulum','Cart-Amnesia'],a:0,why:'Both behaviours happen together, which is faux-gal. A spendulum would swing from one to the other over time.'},
+    {s:'Arjun spent freely for two years. After one frightening credit card statement he now argues over ₹10 at the vegetable cart.',o:['Payday-Phoria','Spendulum','Thrift-Splurge'],a:1,why:'A swing from one extreme to the other is the spendulum. The statement itself was his luxusnap.'},
+    {s:'A farmer sells his paddy and feels rich for a week, until the commission agent, the input loan and next season\'s seed take most of it.',o:['Mandi-Mirage','Subscriptomb','Tipfolio'],a:0,why:'Harvest cash that looks like profit before the deductions is the mandi-mirage.'},
+    {s:'Meera saves ₹300 with a festive discount code and celebrates by ordering a ₹4,500 pair of shoes.',o:['Cart-Amnesia','Thrift-Splurge','Shagun-flation'],a:1,why:'The small saving becomes the excuse for the big spend: thrift-splurge.'}
+  ];
+  var score=0, done=0, quizEl=document.getElementById('quiz');
+  QUIZ.forEach(function(q){
+    var c=document.createElement('div'); c.className='qcard';
+    c.innerHTML='<div class="scn">'+q.s+'</div><div class="opts"></div><div class="fb"></div>';
+    var opts=c.querySelector('.opts'), fb=c.querySelector('.fb'), answered=false;
+    q.o.forEach(function(t,i){
+      var b=document.createElement('button'); b.className='opt'; b.textContent=t;
+      b.addEventListener('click',function(){
+        if(answered) return; answered=true; done++;
+        if(i===q.a){b.classList.add('right');score++;fb.textContent='✓ Well spotted. '+q.why;}
+        else{b.classList.add('wrong');opts.children[q.a].classList.add('right');fb.textContent='Not quite, but a useful near miss. '+q.why;}
+        document.getElementById('score').textContent='Score: '+score+' / '+done+(done===QUIZ.length?' · complete':'');
+      });
+      opts.appendChild(b);
+    });
+    quizEl.appendChild(c);
+  });
+
+  // ---- theme toggle ----
+  (function(){var root=document.documentElement,btn=document.getElementById('themeToggle');
+    btn.addEventListener('click',function(){root.setAttribute('data-theme',root.getAttribute('data-theme')==='dark'?'light':'dark');});})();
+
+  // ---- live ISO timestamp with timezone offset ----
+  (function(){var el=document.getElementById('ts');function pad(n){return String(n).padStart(2,'0');}
+    function stamp(){var d=new Date();var iso=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'T'+pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds());
+      var off=-d.getTimezoneOffset(),sign=off>=0?'+':'-';off=Math.abs(off);iso+=sign+pad(Math.floor(off/60))+':'+pad(off%60);el.textContent=iso;}
+    stamp();setInterval(stamp,1000);})();
+
+  // ---- recall reveals ----
+  document.querySelectorAll('.reveal-btn').forEach(function(b){b.addEventListener('click',function(){var a=b.nextElementSibling;var open=a.style.maxHeight&&a.style.maxHeight!=='0px';a.style.maxHeight=open?'0':(a.scrollHeight+8)+'px';b.textContent=open?'Reveal':'Hide';});});
+
+  // ---- scroll reveal: pixel trigger + observer fallback + 1.2s last-resort timeout ----
+  (function(){
+    var els=document.querySelectorAll('.reveal-on-scroll');
+    function showAll(){els.forEach(function(el){el.classList.add('in');});}
+    if(!('IntersectionObserver' in window)){showAll();return;}
+    var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0,rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){io.observe(el);});
+    setTimeout(showAll,1200);
+  })();
+</script>
+</body>
+</html>
